@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>a.查看所有学位课并打印学位课名称以及授课老师</h2>
+{% for DegreeCourse in DegreeCourse_list %}
+    <p>学位课名 ：{{ DegreeCourse.name }}------>授课老师：{{ DegreeCourse.teachers__name }}</p>
+
+{% endfor %}
+<hr>
+<h2>b. 查看所有学位课并打印学位课名称以及学位课的奖学金</h2>
+{% for DegreeCourse_scholarship in DegreeCourse_scholarship_list %}
+    <p>学位课名 ：{{ DegreeCourse_scholarship.name }}------>总奖学金：{{ DegreeCourse_scholarship.total_scholarship }}</p>
+{% endfor %}
+<hr>
+<h2>c.展示所有的专题课</h2>
+{% for Course in Course_list %}
+    <p>专题课名 ：{{ Course }}</p>
+{% endfor %}
+<hr>
+<h2>d.查看id = 1的学位课对应的所有模块名称</h2>
+{% for degree in degree_course %}
+    <p>模块名 ：{{ degree.course__name }}</p>
+{% endfor %}
+<hr>
+<h2>e.获取id = 1的专题课，并打印：课程名、级别(中文)、why_study、what_to_study_brief、所有recommend_courses</h2>
+{% for Course in Course_obj %}
+    <p>专题课名：{{ Course.name }}</p>
+    <p>级别：{{ Course.level }}</p>
+    <p>why_study:{{ Course.coursedetail__why_study }}</p>
+    <p>what_to_study_brief:{{ Course.coursedetail__what_to_study_brief }}</p>
+    <p>recommend_courses：{{ Course.coursedetail__recommend_courses }}</p>
+{% endfor %}
+<hr>
+<h2>f.获取id = 1的专题课，并打印该课程相关的所有常见问题</h2>
+{% for question in all_question %}
+    <p>常见问题 ：{{ question }}</p>
+{% endfor %}
+<hr>
+<h2>g.获取id = 1的专题课，并打印该课程相关的课程大纲</h2>
+{% for CourseOutline in CourseOutlines %}
+    <p>课程大纲 ：{{ CourseOutline.coursedetail__courseoutline__title }}</p>
+{% endfor %}
+<hr>
+<h2>h.获取id = 1的专题课，并打印该课程相关的所有章节</h2>
+{% for coursechapter in coursechapters %}
+    <p>课程章节 ：{{ coursechapter.coursechapters__name }}</p>
+{% endfor %}
+<hr>
+
+<h2>i.获取id = 1的专题课，并打印该课程相关的所有课时</h2>
+{% for CourseSection in CourseSections %}
+    <p>课程课时 ：{{ CourseSection.coursechapters__coursesections__name }}------>时长{{ CourseSection.coursechapters__coursesections__video_time }}</p>
+{% endfor %}
+<hr>
+<h2>j.获取id = 1的专题课，并打印该课程相关的所有的价格策略</h2>
+{% for PricePolicy in PricePolicys %}
+    <p>所有的价格 ：{{ PricePolicy }}</p>
+{% endfor %}
+
+</body>
+</html>
