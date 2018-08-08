@@ -47,9 +47,13 @@ class CourseSerializer(serializers.ModelSerializer):
     '''
     展示所有专题课
     '''
+    price_list = serializers.SerializerMethodField()
     class Meta:
         model = models.Course
-        fields = ['id','name']
+        fields = ['id','name','price_list']
+    def get_price_list(self,row):
+        price_list = row.price_policy.all()  # 对于有GenericRelation字段的可以直接用字段来查询
+        return [{'pid':item.id,'price': item.price, 'valid_period': item.get_valid_period_display()} for item in price_list]
 
 class CourseFirstSerializer(serializers.ModelSerializer):
     '''

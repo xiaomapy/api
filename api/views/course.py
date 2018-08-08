@@ -1,6 +1,7 @@
 from django.shortcuts import render,HttpResponse
 from rest_framework.views import APIView
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.viewsets import ViewSetMixin
 from rest_framework.response import Response
 from api import models
 from api import serializer
@@ -43,6 +44,7 @@ class DegreeCourseDetailView(APIView):
     学位课id=1的所有模块名
     '''
     def get(self,request,pk,*args,**kwargs):
+
         res = {'code': 1000, 'data': None}
         try:
             Degree_obj = models.DegreeCourse.objects.filter(pk=pk).first()
@@ -64,7 +66,8 @@ class CourseView(APIView):
             course_list = models.Course.objects.filter(degree_course__isnull=True)
             ser_obj = serializer.CourseSerializer(course_list,many=True)
             res['data'] = ser_obj.data
-            res['Access-Control-Allow-Origin'] = "*"
+            print(ser_obj.data)
+            # res['Access-Control-Allow-Origin'] = "*"
         except Exception as e:
             res['code'] = 1001
             res['error'] = '数据查询失败'
@@ -126,3 +129,10 @@ class CourseChapterView(APIView):
         ser_obj = serializer.CourseChapterSerializer(course_obj,many=True)
         res['data'] = ser_obj.data
         return Response(res)
+
+
+class ShoppingCarView(ViewSetMixin,APIView):
+
+    def create(self,request,*args,**kwargs):
+        print(request)
+        return Response({'code':1})

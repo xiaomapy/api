@@ -4,6 +4,7 @@
 from django.conf.urls import url
 from api.views import course
 
+
 urlpatterns = [
     url(r'^degreeTeacher/$',course.DegreeCourseTeacherView.as_view()),  # all学位课与老师
     url(r'^degreeScholarship/$',course.DegreeCourseScholarshipView.as_view()),  # all学位课与奖金
@@ -14,4 +15,6 @@ urlpatterns = [
     url(r'^courseCourseOutline/$',course.CourseOutlineView.as_view()),  # id=1专题课 all课程大纲
     url(r'^courseChapter/$',course.CourseChapterView.as_view()),  # id=1专题课 all 章节
 
+
+    url(r'^shoppingcar/$',course.ShoppingCarView.as_view({'get':'create'})),
 ]
