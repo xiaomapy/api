@@ -53,7 +53,7 @@ class CourseSerializer(serializers.ModelSerializer):
         fields = ['id','name','price_list']
     def get_price_list(self,row):
         price_list = row.price_policy.all()  # 对于有GenericRelation字段的可以直接用字段来查询
-        return [{'pid':item.id,'price': item.price, 'valid_period': item.get_valid_period_display()} for item in price_list]
+        return [{'price': item.price, 'pid':item.id,'valid_period': item.get_valid_period_display()} for item in price_list]
 
 class CourseFirstSerializer(serializers.ModelSerializer):
     '''

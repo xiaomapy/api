@@ -3,7 +3,7 @@
 
 from django.conf.urls import url
 from api.views import course
-
+from api.views import shoppingcar
 
 urlpatterns = [
     url(r'^degreeTeacher/$',course.DegreeCourseTeacherView.as_view()),  # all学位课与老师
@@ -16,5 +16,9 @@ urlpatterns = [
     url(r'^courseChapter/$',course.CourseChapterView.as_view()),  # id=1专题课 all 章节
 
 
-    url(r'^shoppingcar/$',course.ShoppingCarView.as_view({'get':'create'})),
+    url(r'^shoppingcar/$',shoppingcar.ShoppingCarView.as_view({'get':'list','post':'create','put':'update','delete':'destroy'})),
+    # url(r'^shoppingcar/(?P<pk>\d+)$',shoppingcar.ShoppingCarView.as_view({})),
+
+
+
 ]

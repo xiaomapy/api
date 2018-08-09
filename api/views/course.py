@@ -131,8 +131,3 @@ class CourseChapterView(APIView):
         return Response(res)
 
 
-class ShoppingCarView(ViewSetMixin,APIView):
-
-    def create(self,request,*args,**kwargs):
-        print(request)
-        return Response({'code':1})

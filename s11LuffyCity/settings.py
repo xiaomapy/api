@@ -161,3 +161,6 @@ CORS_ALLOW_HEADERS = (
     'x-requested-with',
     'Pragma',
 )
+
+
+LUFFY_SHOPPING_CAR = 'shopping_car_%s_%s'
